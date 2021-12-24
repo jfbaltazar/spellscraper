@@ -47,12 +47,13 @@ def wanted_subclass(spell, subclasses):
 
 def query_by_name(spells):
     def concrete_query(name):
+        result = []
         if type(name) == list:
             name = ' '.join(name)
         for spell in spells:
-            if spell['name'].lower() == name.lower():
-                return [spell]
-        return []
+            if name.lower() in spell['name'].lower():
+                result.append(spell)
+        return result
     return concrete_query
 
 def query_by_level(spells):
